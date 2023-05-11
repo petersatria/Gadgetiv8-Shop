@@ -1,11 +1,15 @@
 | Method | Route              | Description                                                                      |
 | :----- | :---------         | :------------------------------------------------------------------------------- |
+| GET    | /                  | Landing page                                                                     |
 | GET    | /login             | Melakukan login                                                                  |
 | GET    | /register          | Melakukan register                                                               |
-| GET    | /logut             | Melakukan logout                                                                 |
+| GET    | /logout             | Melakukan logout                                                                 |
 | GET    | /users/profile     | Menampilkan detail user                                                          |
-| GET    | /users/update      | Menampilkan form edit user                                                       |
-| POST   | /users/update      | Mengupdate user                                                                  |
 | GET    | /products          | Menampilkan seluruh products                                                     |
 | GET    | /products/:id      | Menampilkan product detail                                                       |
-| POST   | /products/:id      | Membeli product                                                                  |
+| GET    | /products/buy/:id  | Membeli product                                                                  |
+| GET    | /products/add      | Form untuk menambahkan product                                                   |
+| POST   | /products/add      | Menambahkan product                                                              |
+| GET    | /product/update/id | Menampilkan form edit product                                                       |
+| POST   | /product/update/id      | Mengupdate product                                                                  |
+| GET    | /products/delete/:id      | Menghapus product                                                              |
