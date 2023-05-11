@@ -3,6 +3,7 @@ const UserController = require("../controllers/UserController")
 const router = require('express').Router()
 
 router
+  .get('/', UserController.homePage)
   .get('/register', UserController.registerForm)
   .post('/register', UserController.register)
   .get('/login', UserController.loginForm)
