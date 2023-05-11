@@ -18,8 +18,18 @@
 
     <p>Store: <%= profile.firstName %> <%= profile.lastName %></p>
     <p>Address: <%= profile.address %></p>
-    <a href="/products/buy/<%= product.id %>">Buy</a>
+    <a onclick="downloadInvoice()">Buy</a>
   </section>
+
+  <script>
+    function downloadInvoice(params) {
+      var data = {};
+      easyinvoice.createInvoice(data, function (result) {
+        easyinvoice.download('myInvoice.pdf', result.pdf);
+      });
+    }
+
+  </script>
 </body>
 
 </html>

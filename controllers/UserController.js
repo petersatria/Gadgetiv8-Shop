@@ -2,16 +2,6 @@ const { Product, Category, User, Profile } = require('../models')
 const bcrypt = require('bcryptjs')
 
 class UserController {
-  static homePage(req, res) {
-    const userId = req.session.userId;
-    if(!userId){
-      res.redirect("/login")
-    }
-    else {
-      res.render('users/home', { userId });
-    }
-  }
-
   static registerForm(req, res) {
     res.render('auth/register')
   }
@@ -60,6 +50,7 @@ class UserController {
       }
     })
   }
+
 }
 
 
