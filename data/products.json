@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Google Pixel",
+    "description": "Voonix",
+    "price": 1884,
+    "UserId": 1
+  },
+  {
+    "name": "iPhone",
+    "description": "Dabtype",
+    "price": 1321,
+    "UserId": 1
+  },
+  {
+    "name": "iPhone",
+    "description": "Nlounge",
+    "price": 681,
+    "UserId": 2
+  },
+  {
+    "name": "iPhone",
+    "description": "Yakidoo",
+    "price": 1191,
+    "UserId": 1
+  },
+  {
+    "name": "Samsung Galaxy",
+    "description": "LiveZ",
+    "price": 1549,
+    "UserId": 1
+  },
+  {
+    "name": "Samsung Galaxy",
+    "description": "Tanoodle",
+    "price": 527,
+    "UserId": 1
+  },
+  {
+    "name": "Google Pixel",
+    "description": "Jamia",
+    "price": 1430,
+    "UserId": 2
+  },
+  {
+    "name": "Google Pixel",
+    "description": "Fivespan",
+    "price": 1007,
+    "UserId": 1
+  },
+  {
+    "name": "iPhone",
+    "description": "Eabox",
+    "price": 216,
+    "UserId": 2
+  },
+  {
+    "name": "Samsung Galaxy",
+    "description": "Realblab",
+    "price": 249,
+    "UserId": 2
+  }
+]
