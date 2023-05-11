@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+<body>
+  <%- include('../partials/navbar') %>
+  <section class="container">
+
+    <h1>Edit Profile</h1>
+
+    <form action="/users/profile" method="post">
+      <div class="mb-3">
+        <label for="firstname" class="form-label"><b>First Name</b></label>
+        <input type="text" placeholder="Enter First Name" name="firstname" value="<%= userprofile.firstName %>" required
+          class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="lastname" class="form-label"><b>Last Name</b></label>
+        <input class="form-control" type="text" placeholder="Enter Last Name" name="lastname"
+          value="<%= userprofile.lastName %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="address" class="form-label"><b>Address</b></label>
+        <input class="form-control" type="text" placeholder="Enter Address" name="address"
+          value="<%= userprofile.address %>" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br><br>
+    <h1>Edit Credentials</h1>
+
+    <form action="/users/profile/editcredentials/" method="post">
+      <div class="mb-3">
+        <label class="form-label" for="username"><b>Username</b></label>
+        <input class="form-control" type="text" placeholder="Enter Username" name="username"
+          value="<%= userprofile.User.username %>" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="email"><b>E-Mail</b></label>
+        <input class="form-control" type="text" placeholder="Enter Last Name" name="email"
+          value="<%= userprofile.User.email %>" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="password"><b>New Password</b></label>
+        <input class="form-control" type="password" placeholder="Enter Password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</body>
+
+</html>

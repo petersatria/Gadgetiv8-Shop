@@ -6,12 +6,16 @@
 <body>
   <%- include('../partials/navbar') %>
   <section class="container">
-    <form action="/products/myProducts" method="get">
-      <input type="text" name="search" placeholder="Nama product">
-      <input type="submit" value="Search">
+    <% if (products.length > 0) { %>
+    <form action="/products/myProducts" method="get" class="row g-2">
+      <div class="col-5">
+        <input type="text" name="search" placeholder="Nama product" class="form-control">
+      </div>
+      <div class="col-auto">
+        <input type="submit" value="Search" class="btn btn-primary">
+      </div>
     </form>
-    <a href="/products/add">Add Product</a>
-    <table border="1">
+    <table class="table">
       <tr>
         <th>No</th>
         <th>Name</th>
@@ -20,19 +24,25 @@
         <th>Store</th>
         <th>Action</th>
       </tr>
-      <% products.forEach(e => { %>
+
+      <% products.forEach((e, i) => { %>
       <tr>
-        <td><%= e.id %></td>
+        <td><%= ++i %></td>
         <td><%= e.name %></td>
         <td><%= e.description %></td>
         <td><%= e.rupiah %></td>
         <td><%= e.User.username %></td>
         <td>
-          <a href="/products/myProducts/<%= e.id %>">Edit</a>
-          <a href="/products/myProducts/delete/<%= e.id %>">Delete</a>
+          <a href="/products/myProducts/<%= e.id %>" class="btn btn-success">Edit</a>
+          <a href="/products/myProducts/delete/<%= e.id %>" class="btn btn-danger">Delete</a>
         </td>
       </tr>
       <% }) %>
+      <% } else { %>
+      <p>Please add product first</p>
+      <a href="/products/add">Add Product</a>
+      <% } %>
+
     </table>
   </section>
 

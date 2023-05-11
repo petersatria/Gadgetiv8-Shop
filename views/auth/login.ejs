@@ -5,18 +5,27 @@
 
 <body>
   <section class="container">
+    <% if(errors){ %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= errors %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
     <form action="/login" method="post">
-      <div>
-        <label for="username">Username</label>
-        <input type="text" name="username">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" class="form-control">
       </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="text" name="password">
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="text" name="password" class="form-control">
       </div>
-      <input type="submit">
+      <input type="submit" class="btn btn-primary">
+      <a href="/register" class="btn btn-secondary">Register Now</a>
     </form>
   </section>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

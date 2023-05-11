@@ -16,13 +16,60 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Username is required'
+        },
+        notEmpty: {
+          msg: 'Username is required'
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Email is required'
+        },
+        notEmpty: {
+          msg: 'Email is required'
+        },
+        isEmail: {
+          msg: 'Email is not valid'
+        },
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Password is required'
+        },
+        notEmpty: {
+          msg: 'Password is required'
+        },
+        checkLength() {
+          if (this.password.length < 8) {
+            throw new Error('Password minimum 8 character');
+          }
+        }
+      }
+    },
     role: DataTypes.STRING
   }, {
     hooks: {
       beforeCreate(user, option) {
+        const salt = bcrypt.genSaltSync(8)
+        const hash = bcrypt.hashSync(user.password, salt)
+
+        user.password = hash
+      },
+      beforeUpdate(user, option) {
         const salt = bcrypt.genSaltSync(8)
         const hash = bcrypt.hashSync(user.password, salt)
 

@@ -4,24 +4,35 @@
 <%- include('../partials/head') %>
 
 <body>
+  <%- include('../partials/navbar') %>
+
   <section class="container">
+    <% if(errors){ %>
+    <% errors.split(',').forEach(e => { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= e %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }); %>
+    <% } %>
+
     <form action="/register" method="post">
-      <div>
-        <label for="username">Username</label>
-        <input type="text" name="username">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" class="form-control">
       </div>
-      <div>
-        <label for="email">Email</label>
-        <input type="text" name="email">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" name="email" class="form-control">
       </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="text" name="password">
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="text" name="password" class="form-control">
       </div>
-      <input type="submit">
+      <input type="submit" class="btn btn-primary">
     </form>
   </section>
-
+  <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
