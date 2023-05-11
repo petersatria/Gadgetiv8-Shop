@@ -63,13 +63,13 @@ class UserController {
     console.log(req.body)
     const {username, email, oldpassword, password} = req.body
     const userId = req.session.userId;
-    User.findOne({ where: { id: userId } })
-      .then((user) => {
-        const isValidPassword = bcrypt.compareSync(oldpassword, user.password)
-        if (!isValidPassword) {
-          return res.redirect(`/users/profile/edit/${userId}?errors=invalid password`)
-        } 
-    })
+    // User.findOne({ where: { id: userId } })
+    //   .then((user) => {
+    //     const isValidPassword = bcrypt.compareSync(oldpassword, user.password)
+    //     if (!isValidPassword) {
+    //       return res.redirect(`/users/profile/edit/${userId}?errors=invalid password`)
+    //     } 
+    // })
     User.update({ 
       username: username, 
       email: email, 
@@ -90,11 +90,27 @@ class UserController {
   }
 
   static register(req, res) {
-    const { username, email, oldpassword, password, role } = req.body
+    const { username, email, password, role, firstname, lastname, address } = req.body
 
-    User.create({ username, email, password, role: 'user' })
-      .then(() => {
-        res.redirect('/login')
+    User.create(
+      { username, 
+        email, 
+        password, 
+        role: 'user' 
+      }, 
+      { returning: ['id'] }
+    )
+      .then(user => {
+        const id = user.id;
+        Profile.create({
+          firstName: firstname,
+          lastName: lastname,
+          address: address,
+          UserId: id
+        })
+        .then(()=>{
+          res.redirect('/login')
+        })
       })
       .catch(err => res.send(err))
   }
