@@ -4,8 +4,10 @@
  <title>Home Page</title>
  </head>
  <body>
-    <h1>Welcome user id number <%= userId %>!</h1>
-    <%= JSON.stringify(profile) %>
+    <h1>Welcome to Gadgetiv8 Shop <%= profile.firstName %> (user id : <%= userId %>) beralamat di <%= profile.address %> !</h1>
+    <!-- <%= JSON.stringify(profile) %> -->
+    <a href="/products">Silahkan liat katalog produknya disini</a><br><br>
+
     <a href="/logout">Logout</a>
  </body>
 </html>

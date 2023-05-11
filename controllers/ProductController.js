@@ -2,6 +2,9 @@ const { Product, Category, User, Profile } = require('../models')
 
 class ProductController {
   static products(req, res) {
+    if(!req.session.userId){
+      res.redirect("/login")
+    }
     Product.findAll({
       include: [Category, User]
     })
@@ -13,10 +16,16 @@ class ProductController {
   }
 
   static formAdd(req, res) {
+    if(!req.session.userId){
+      res.redirect("/login")
+    }
     res.render('products/add')
   }
 
   static create(req, res) {
+    if(!req.session.userId){
+      res.redirect("/login")
+    }
     console.log(req.session, 'AADDDDDDDDDDD');
 
     const { name, description, price } = req.body
@@ -28,6 +37,9 @@ class ProductController {
   }
 
   static detail(req, res) {
+    if(!req.session.userId){
+      res.redirect("/login")
+    }
     const { id } = req.params
     const options = {
       include: [Category, User]
@@ -48,6 +60,9 @@ class ProductController {
   }
 
   static buy(req, res) {
+    if(!req.session.userId){
+      res.redirect("/login")
+    }
     const { id } = req.params
     const options = {
       include: [Category, User]
