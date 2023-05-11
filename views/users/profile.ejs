@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+<body>
+  <%- include('../partials/navbar') %>
+  <section class="container">
+    <%= JSON.stringify(userprofile)%>
+    <h1>Hello, <%= userprofile.firstName %> <%= userprofile.lastName %></h1>
+    <p>Your current address is <%= userprofile.address %></p>
+    <p>Status Privelage is <%= userprofile.User.role %></p>
+    <p>id number <%= isLoggedIn %></p>
+    <a href="/users/profile/edit/<%= isLoggedIn %>">Edit profile</a>
+ </body>
+</html>
