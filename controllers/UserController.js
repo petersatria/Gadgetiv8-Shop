@@ -8,7 +8,13 @@ class UserController {
       res.redirect("/login")
     }
     else {
-      res.render('users/home', { userId });
+      Profile.findByPk(userId)
+      .then((profile) => {
+        res.render('users/home', { userId, profile });
+      })
+      .catch(err => {
+        res.send(err)
+      })
     }
   }
 
