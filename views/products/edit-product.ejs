@@ -6,26 +6,34 @@
 <body>
   <%- include('../partials/navbar') %>
   <section class="container">
+    <% if(errors){ %>
+    <% errors.split(',').forEach(e => { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= e %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }); %>
+    <% } %>
     <h1>Edit Product: <%= product.name %></h1>
     <form action="/products/myProducts/<%= product.id %>" method="post">
-      <div>
-        <label for="name">Name</label><br>
-        <input type="text" name="name" value="<%= product.name %>">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label><br>
+        <input type="text" name="name" value="<%= product.name %>" class="form-control">
       </div>
-      <div>
-        <label for="description">Description</label><br>
-        <input type="text" name="description" value="<%= product.description %>">
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label><br>
+        <input type="text" name="description" value="<%= product.description %>" class="form-control">
       </div>
-      <div>
-        <label for="price">Price</label><br>
-        <input type="number" name="price" value="<%= product.price %>">
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label><br>
+        <input type="number" name="price" value="<%= product.price %>" class="form-control">
       </div>
       <br>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" class="btn btn-primary">
     </form>
   </section>
 
-  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src=" /js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

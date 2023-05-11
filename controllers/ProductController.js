@@ -27,7 +27,9 @@ class ProductController {
   }
 
   static formAdd(req, res) {
-    res.render('products/add', { isLoggedIn: req.session.userId })
+    let { errors } = req.query
+
+    res.render('products/add', { isLoggedIn: req.session.userId, errors })
   }
 
   static create(req, res) {
@@ -36,7 +38,13 @@ class ProductController {
       .then(() => {
         res.redirect('/products')
       })
-      .catch(err => res.send(err))
+      .catch(err => {
+        if (err.name === 'SequelizeValidationError') {
+          err = err.errors.map(e => e.message)
+          return res.redirect(`/products/add?errors=${err}`)
+        }
+        res.send(err)
+      })
   }
 
   static detail(req, res) {
@@ -109,10 +117,11 @@ class ProductController {
 
   static myProductsEditForm(req, res) {
     const { id } = req.params
+    let { errors } = req.query
 
     Product.findByPk(id)
       .then(product => {
-        res.render('products/edit-product', { product, isLoggedIn: req.session.userId })
+        res.render('products/edit-product', { product, isLoggedIn: req.session.userId, errors })
       })
       .catch(err => res.send(err))
   }
@@ -124,7 +133,13 @@ class ProductController {
       .then(() => {
         res.redirect('/products/myProducts')
       })
-      .catch(err => res.send(err))
+      .catch(err => {
+        if (err.name === 'SequelizeValidationError') {
+          err = err.errors.map(e => e.message)
+          return res.redirect(`/products/myProducts/${id}?errors=${err}`)
+        }
+        res.send(err)
+      })
   }
 
   static myProductsDelete(req, res) {
