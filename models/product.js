@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const priceToRupiah = require("../helpers/formatter");
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     /**
@@ -12,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Product.belongsTo(models.User)
       Product.belongsToMany(models.Category, { through: 'ProductCategory' })
+    }
+
+    get rupiah() {
+      return priceToRupiah(this.price)
     }
   }
   Product.init({
