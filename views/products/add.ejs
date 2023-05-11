@@ -27,6 +27,22 @@
         <label for="price" class="form-label">Price</label><br>
         <input type="number" name="price" class="form-control">
       </div>
+      <div class="mb-3">
+        <label for="category1" class="form-label">Category 1</label><br>
+        <select name="category1" id="" class="form-control">
+          <% category.forEach(e => { %>
+          <option value="<%= e.id %>"><%= e.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="category2" class="form-label">Category 2</label><br>
+        <select name="category2" id="" class="form-control">
+          <% category.forEach(e => { %>
+          <option value="<%= e.id %>"><%= e.name %></option>
+          <% }) %>
+        </select>
+      </div>
       <br>
       <input type="submit" value="Submit" class="btn btn-primary">
     </form>
