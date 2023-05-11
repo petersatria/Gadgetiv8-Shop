@@ -1,4 +1,4 @@
-const { Product, Category, User, Profile } = require('../models')
+const { Product, Category, User, Profile, ProductCategory } = require('../models')
 const easyinvoice = require('easyinvoice');
 const fs = require('fs');
 const { Op } = require("sequelize");
@@ -20,7 +20,6 @@ class ProductController {
     }
     Product.findAll(options)
       .then(products => {
-        // res.send(products)
         res.render('products/', { products, isLoggedIn: req.session.userId })
       })
       .catch(err => res.send(err))
@@ -28,16 +27,26 @@ class ProductController {
 
   static formAdd(req, res) {
     let { errors } = req.query
+    Category.findAll()
+      .then(category => {
+        res.render('products/add', { category, isLoggedIn: req.session.userId, errors })
+      })
+      .catch(err => res.send(err))
 
-    res.render('products/add', { isLoggedIn: req.session.userId, errors })
   }
 
   static create(req, res) {
-    const { name, description, price } = req.body
+    const { name, description, price, category1, category2 } = req.body
+    let productId
     Product.create({ name, description, price, UserId: req.session.userId })
-      .then(() => {
-        res.redirect('/products')
+      .then(product => {
+        productId = product.id
+        return ProductCategory.create({ ProductId: productId, CategoryId: category1 })
       })
+      .then(() => {
+        return ProductCategory.create({ ProductId: productId, CategoryId: category2 })
+      })
+      .then(() => res.redirect('/products'))
       .catch(err => {
         if (err.name === 'SequelizeValidationError') {
           err = err.errors.map(e => e.message)
@@ -67,17 +76,15 @@ class ProductController {
   }
 
   static buy(req, res) {
-    const { id } = req.params
-    const options = {
-      include: [Category, User]
-    }
+    // const { id } = req.params
+    // const options = {
+    //   include: [Category, User]
+    // }
 
-    let product
     let data = JSON.parse(fs.readFileSync('./data/invoice.json', 'utf-8'))
-    console.log(data);
     easyinvoice.createInvoice(data, function (result) {
 
-      // return fs.writeFileSync('tes.pdf', result.pdf, 'base64')
+      fs.writeFileSync('invoice.pdf', result.pdf, 'base64')
       // res.send(data)
     });
     // Product.findByPk(id, options)

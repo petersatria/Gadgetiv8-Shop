@@ -7,7 +7,7 @@
   <%- include('../partials/navbar') %>
   <section class="container">
     <h1><%= product.name %></h1>
-    <p><%= product.description %></p>
+    <p>Description : <%= product.description %></p>
     <p>Price: <%= product.rupiah %></p>
     <p>Categories :</p>
     <ul>
@@ -28,7 +28,6 @@
         easyinvoice.download('myInvoice.pdf', result.pdf);
       });
     }
-
   </script>
 </body>
 
