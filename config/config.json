@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "postgres",
-    "password": "1234",
+    "password": "postgres",
     "database": "Gadgetiv8-DB",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "port": 5678
+    "port": 5432
   },
   "test": {
     "username": "root",

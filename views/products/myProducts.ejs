@@ -6,10 +6,11 @@
 <body>
   <%- include('../partials/navbar') %>
   <section class="container">
-    <form action="/products" method="get">
+    <form action="/products/myProducts" method="get">
       <input type="text" name="search" placeholder="Nama product">
       <input type="submit" value="Search">
     </form>
+    <a href="/products/add">Add Product</a>
     <table border="1">
       <tr>
         <th>No</th>
@@ -27,7 +28,8 @@
         <td><%= e.rupiah %></td>
         <td><%= e.User.username %></td>
         <td>
-          <a href="/products/<%= e.id %>">Detail</a>
+          <a href="/products/myProducts/<%= e.id %>">Edit</a>
+          <a href="/products/myProducts/delete/<%= e.id %>">Delete</a>
         </td>
       </tr>
       <% }) %>

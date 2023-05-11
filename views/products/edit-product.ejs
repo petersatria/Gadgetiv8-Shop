@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+
+<body>
+  <%- include('../partials/navbar') %>
+  <section class="container">
+    <h1>Edit Product: <%= product.name %></h1>
+    <form action="/products/myProducts/<%= product.id %>" method="post">
+      <div>
+        <label for="name">Name</label><br>
+        <input type="text" name="name" value="<%= product.name %>">
+      </div>
+      <div>
+        <label for="description">Description</label><br>
+        <input type="text" name="description" value="<%= product.description %>">
+      </div>
+      <div>
+        <label for="price">Price</label><br>
+        <input type="number" name="price" value="<%= product.price %>">
+      </div>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+  </section>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
