@@ -1,6 +1,12 @@
+const { Product, Category } = require('../models')
+
 class ProductController {
   static products(req, res) {
-    res.send('products')
+    Product.findAll({
+      include: Category
+    })
+      .then(products => res.send(products))
+      .catch(err => res.send(err))
   }
 }
 
